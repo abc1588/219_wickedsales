@@ -1,0 +1,13 @@
+{"success":true,
+  "products":[
+    {"name":"Wicked Thing",
+      "price":"2000",
+      "id":  1},
+    {"name":"Wicked Shoes",
+      "price":"42150",
+      "id":  2},
+    {"name":"Wicked Brick",
+      "price":"525",
+      "id":  3}
+  ]}
+
