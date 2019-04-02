@@ -14,20 +14,21 @@ body {
     font-size: 30px;
     padding: 50px;
     text-align: center;
+
+    .logo {
+        height: 220px;
+        filter: drop-shadow(2px 2px 0px #FFF);
+    }
+
+    h1 {
+        color: #61DAFB;
+        font-size: 5em;
+        letter-spacing: 5px;
+        margin: 0.16em;
+        text-shadow: 2px 2px 0 #FFF;
+    }
 }
 
-.app .logo {
-    height: 220px;
-    filter: drop-shadow(2px 2px 0px #FFF);
-}
-
-.app h1 {
-    color: #61DAFB;
-    font-size: 5em;
-    letter-spacing: 5px;
-    margin: 0.16em;
-    text-shadow: 2px 2px 0 #FFF;
-}
 
 .rotate {
     animation: spin 10s linear infinite;
