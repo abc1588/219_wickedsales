@@ -5,13 +5,10 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import ProductRoutes from './products';
 
-
 const App = () => (
     <div>
-        <div className="app">
-            <h1 className="center">Wicked Sales</h1>
-            <Route path="/products" component={ProductRoutes}/>
-        </div>
+        <h1 className="center">Wicked Sales</h1>
+        <Route path="/products" component={ProductRoutes}/>
     </div>
 );
 
