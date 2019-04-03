@@ -12,7 +12,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Learning-Fuze/219_wickedsales.git"
+    "url": "https://github.com/abc1588/219_wickedsales.git"
   },
   "dependencies": {
     "axios": "^0.18.0",
