@@ -1,6 +1,6 @@
 <img align="right" width="150" src="https://github.com/Learning-Fuze/react-with-server/blob/master/public/dist/php-react.png">
 
-# Wicked Sales (219_wickedsales)
+# Wicked Sales
 
 > E-commerce site built with ReactJS, PHP, and MySQL
 
@@ -8,7 +8,7 @@
 
 > 1. Fork this repo
 > 1. Clone your forked copy of this repo
->    - `git clone https://github.com/abc1588/219_wickedsales.git`
+>    - `git clone https://github.com/[Your Username]/219_wickedsales.git`
 > 1. Change directory into the newly cloned repo
 >    - `cd 219_wickedsales`
 > 1. Install dependencies 
@@ -19,7 +19,7 @@
 >    - Use phpMyAdmin (or similar) to create a database
 > 1. Start dev server
 >    - `npm start`
-> 1. Open a browser and navigate to `localhost:3000` You should see "Welcome to React".
+> 1. Open a browser and navigate to `localhost:3000`
 
 ### Bundle For Deployment
 

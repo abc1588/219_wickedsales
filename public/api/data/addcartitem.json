@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "cartItems": [{
+      "id": "1",
+      "name": "Wicked Thing",
+      "price": "2000",
+      "image": ["images/wicked.jpg"
+      ]
+    },
+    "2": {
+      "id": "2",
+      "name": "Wicked Shoes",
+      "price": "42159",
+      "image": [
+        "images/ruby_shoes.jpg",
+        "images/wicked_shoes.jpg"
+      ]
+    },
+    "3": {
+      "id": "3",
+      "name": "Wicked Brick",
+      "price": "525",
+      "image": [
+        "images/brick.jpg",
+        "images/lego",
+        "images/witch.jpg",
+        "images/halloween.jpg",
+        "images/lego2"
+      ]
+    }
+  }
+}

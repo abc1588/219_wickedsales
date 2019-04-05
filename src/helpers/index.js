@@ -1,8 +1,7 @@
-export function formatMoney(pennies) {
+export function formatMoney(pennies){
     pennies = parseFloat(pennies);
 
-    if (isNaN(pennies)){
-        // throw new Error('Invalid data passed to formatMoney');
+    if(isNaN(pennies)){
         return 'TBA';
     }
 
@@ -10,4 +9,3 @@ export function formatMoney(pennies) {
 
     return `$${dollars}`;
 }
-

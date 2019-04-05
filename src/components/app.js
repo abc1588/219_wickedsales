@@ -4,15 +4,16 @@ import '../assets/css/app.scss';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import ProductRoutes from './products';
-import Home from './products/home';
+import Home from './home';
 import Nav from './nav';
 
 const App = () => (
     <div>
-        <Nav/>
+        <Nav />
+
         <div className="container">
-        <Route exact path="/" component={Home}/>
-        <Route path="/products" component={ProductRoutes}/>
+            <Route exact path="/" component={Home} />
+            <Route path="/products" component={ProductRoutes} />
         </div>
     </div>
 );

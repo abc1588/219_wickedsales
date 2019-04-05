@@ -3,19 +3,17 @@ import axios from 'axios';
 import ProductItem from './product_item';
 
 class ProductList extends Component {
-
     constructor(props){
         super(props);
 
         this.state = {
-            products:[]
+            products: []
         };
     }
 
-    componentDidMount() {
+    componentDidMount(){
         this.getProducts();
     }
-
 
     getProducts(){
         axios.get('/api/getproducts.php').then((resp) => {
@@ -26,14 +24,13 @@ class ProductList extends Component {
         });
     }
 
-    render() {
-            const productList = this.state.products.map((product) => {
-                // return <li key={product.id}>{product.name} ${(product.price / 100).toFixed(2)}</li>
-                return <ProductItem key={product.id} {...product}/>
-                })
+    render(){
+        const productList = this.state.products.map((product) => {
+            return <ProductItem key={product.id} {...product}/>;
+        });
 
-            return (
-            <div className = "product-list">
+        return (
+            <div className="product-list">
                 <h1 className="center">Wicked Product List</h1>
                 <ul className="collection">
                     {productList}

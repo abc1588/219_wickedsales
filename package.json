@@ -1,25 +1,23 @@
 {
   "name": "wicked_sales",
   "version": "1.0.0",
-  "description": "Generic E-Commerce website with ReactJS Client and PHP Apache Backend Server",
+  "description": "Generic E-Commerce website with ReactJS Client and PHP Back-end",
   "main": "index.js",
-
   "proxy": {
     "/api/*": {
-      "target": "htty://localhost:80"
+      "target": "http://localhost:8080"
     }
   },
-
   "scripts": {
     "start": "node dev_server.js",
     "bundle": "webpack --config webpack.prod.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Caroline Pan",
+  "author": "Scott Bowler",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abc1588/219_wickedsales.git"
+    "url": "https://github.com/Learning-Fuze/219_wickedsales.git"
   },
   "dependencies": {
     "axios": "^0.18.0",
