@@ -5,7 +5,8 @@
     //readfile('./data/getproducts.json');
     // include     include_once     require
 
-    require_once('function.php');
+    require_once('config.php');
+    require_once('functions.php');
     set_exception_handler('handleError');
 
     require_once('mysqlconnect.php');
