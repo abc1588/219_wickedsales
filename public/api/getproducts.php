@@ -1,6 +1,5 @@
 <?php
 
-
 require_once('functions.php');
 
 set_exception_handler('handleError');
@@ -40,6 +39,7 @@ while($row = mysqli_fetch_assoc($result)){
 		$data[$currentID] = $row;	
 	}
 }
+
 
 $pureData = [];
 foreach($data as $value){

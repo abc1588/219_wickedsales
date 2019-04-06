@@ -1,5 +1,5 @@
 <?php
 
-handleCors();
+header("Access-Control-Allow-Origin: *");
 
 ?>
