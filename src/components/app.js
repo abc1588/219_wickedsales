@@ -6,13 +6,15 @@ import { Route } from 'react-router-dom';
 import ProductRoutes from './products';
 import Home from './home';
 import Nav from './nav';
+import Test from './test';
 
 const App = () => (
     <div>
         <Nav/>
         <div className="container">
-        <Route exact path="/" component={Home}/>
-        <Route path="/products" component={ProductRoutes}/>
+                <Route exact path="/" component={Home}/>
+                <Route path="/products" component={ProductRoutes}/>
+                <Route path="/test" component={Test}/>
         </div>
     </div>
 );

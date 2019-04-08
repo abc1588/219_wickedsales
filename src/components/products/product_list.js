@@ -28,9 +28,25 @@ class ProductList extends Component {
         });
     }
 
+    // render(){
+    //     console.log('state', this.state)
+    //     const productList = this.state.products.map((product) => {
+    //         return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails} />;
+    //     });
+    //
+    //     return (
+    //         <div className="product-list">
+    //             <h1 className="center">Wicked Product List</h1>
+    //             <ul className="collection">
+    //                 {productList}
+    //             </ul>
+    //         </div>
+    //     );
+    // }
+
     render(){
         const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>;
+            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails} />;
         });
 
         return (
