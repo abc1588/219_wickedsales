@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ProductItem from './product_item';
 
+
 class ProductList extends Component {
     constructor(props){
         super(props);
