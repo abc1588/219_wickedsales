@@ -1,64 +1,58 @@
 <?php
 
-    //phpinfo();
-    //file_get_contents('./data/getproducts.json');  //this does not show any data
-    //readfile('./data/getproducts.json');
-    // include     include_once     require
+require_once('functions.php');
 
-    require_once('config.php');
-    require_once('functions.php');
-    set_exception_handler('handleError');
+set_exception_handler('handleError');
 
-    require_once('mysqlconnect.php');
+require_once('config.php');
 
-    $query = "SELECT p.`id`, p.`name`, p.`price`, i.`url` as image
-      FROM `products` AS p
-      JOIN `images` AS i
-          ON p.`id` = i.`product_id`
-      ORDER BY p.`id`
-    ";
+require_once('mysqlconnect.php');
 
-    /* procedural */
-    $result = mysqli_query($conn, $query);
+$query = "SELECT p.`id`, p.`name`, p.`price`,
+		i.`url` AS `images`
+	FROM `products` AS p
+	JOIN `images` AS i
+		ON p.`id` = i.`products_id`
+	ORDER BY p.`id`
+";
 
-    if(!$result){
-        throw new Exception('invalid query: '. mysqli_error($conn));
-    }
+/*procedural*/
+$result = mysqli_query($conn, $query);
 
-    $data = [];
+if(!$result){
+	throw new Exception('invalid query: '. mysqli_error($conn));
+}
 
-    while($row = mysqli_fetch_assoc($result)){
-        $currentID = $row['id'];
-        $currentID = intval($currentID);
-        $image = $row['image'];
-        if( isset($data[$currentID])) {
-            //$data[$row[`id`]][`images`][] = [$row[`images`]];
-            $data[$currentID]['image'][] = $image;
-        } else {
-            //initialize new array of image in $row
-            unset($row['image']);
-            $row['image'] = [];
-            $row['image'][] = $image;
-            $row['price'] = intval($row['price']);
-            //$data[$row[`id`]][`images`] = [$row[`images`]];
-            $data[$currentID] = $row;
-        }
-    }
+$data = [];
 
-    $pureData=[];
-    foreach($data as $value){
-        $pureData[]=$value;
-    }
+while($row = mysqli_fetch_assoc($result)){
+	$currentID = $row['id'];
+	$currentID = intval($currentID);
+	$image = $row['images'];
+	if( isset( $data[$currentID] ) ){
+		$data[$currentID]['images'][] = $image; //new push way
+	} else {
+		unset($row['images']);
+		$row['images'] = [];
+		$row['images'][] = $image;
+		$row['price'] = intval($row['price']);
+		$data[$currentID] = $row;	
+	}
+}
 
 
-    $output = [
-        'success'=>true,
-        'products'=> $pureData
-    ];
+$pureData = [];
+foreach($data as $value){
+	$pureData[] = $value;
+}
 
-    //php JSON stringify
-    $json_output = json_encode($output);
+$output = [
+	'success'=>true,
+	'products'=> $pureData
+];
 
-    print($json_output);
+$json_output = json_encode( $output );
+
+print( $json_output );
 
 ?>

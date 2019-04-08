@@ -4,7 +4,7 @@ import '../assets/css/app.scss';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import ProductRoutes from './products';
-import Home from './products/home';
+import Home from './home';
 import Nav from './nav';
 
 const App = () => (

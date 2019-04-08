@@ -10,4 +10,3 @@ export function formatMoney(pennies) {
 
     return `$${dollars}`;
 }
-

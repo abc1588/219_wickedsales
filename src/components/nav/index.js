@@ -1,38 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Sidenav from './sidenav';
 
 class Nav extends Component {
-    render(){
+
+    // render(){
+    //     return (
+    //      <div>
+    //         <nav className="purple darken-2">
+    //             <div className="nav-wrapper">
+    //                 <Link className="brand-logo" to="/">Wicked Sales</Link>
+    //                 <a href="#" data-target="sidenav" className="sidenav-trigger">
+    //                     <i className="material-icons">menu</i>
+    //                 </a>
+    //
+    //                 <ul className="right hide-on-med-and-down">
+    //                     <li>
+    //                         <Link to="/">Home</Link>
+    //                     </li>
+    //                     <li>
+    //                         <Link to="/products">Products</Link>
+    //                     </li>
+    //                     <li>
+    //                         <Link to="/">Sign In</Link>
+    //                     </li>
+    //                     <li>
+    //                         <Link to="/">Sign Up</Link>
+    //                     </li>
+    //                 </ul>
+    //             </div>
+    //         </nav>
+    //
+    //         <Sidenav/>
+    //
+    //      </div>
+
+    renderLinks(){
         return (
-         <div>
-            <nav className="purple darken-2">
-                <div className="nav-wrapper">
-                    <Link className="brand-logo" to="/">Wicked Sales</Link>
-                    <a href="#" data-target="sidenav" className="sidenav-trigger">
-                        <i className="material-icons">menu</i>
-                    </a>
+            <Fragment>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/products">Products</Link>
+                </li>
+            </Fragment>
+        )
+    }
 
-                    <ul className="right hide-on-med-and-down">
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/products">Products</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Sign In</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Sign Up</Link>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    render(){
+        const links = this.renderLinks();
 
-            <Sidenav/>
+        return (
+            <Fragment>
+                <nav className="purple darken-2">
+                    <div className="nav-wrapper">
+                        <Link className="brand-logo" to="/">Wicked Sales</Link>
+                        <a href="#" data-target="sidenav" className="sidenav-trigger">
+                            <i className="material-icons">menu</i>
+                        </a>
 
-         </div>
+                        <ul className="right hide-on-med-and-down">
+                            {links}
+                        </ul>
+                    </div>
+                </nav>
+
+                <Sidenav links={links}/>
+            </Fragment>
+
         );
     }
 }

@@ -1,37 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+
+import { Link } from 'react-router-dom';
 
 class Sidenav extends Component {
-
     componentDidMount(){
-
-        console.log('Component Sidenav Mounted:', this.sidenav);
-
         M.Sidenav.init(this.sidenav);
-
     }
-
 
     render(){
         return (
-            <ul ref={(element) => {this.sidenav = element}} id="sidenav" className="sidenav">
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/products">Products</Link>
-                </li>
-                <li>
-                    <Link to="/">Sign In</Link>
-                </li>
-                <li>
-                    <Link to="/">Sign Up</Link>
-                </li>
+            <ul ref={(e) => { this.sidenav = e }} id="sidenav" className="sidenav">
+                {this.props.links}
             </ul>
-        )
-
-
+        );
     }
 }
 
 export default Sidenav;
+
