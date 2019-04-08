@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProductCarousel from './product_carousel';
+import {formatMoney} from '../../helpers';
+import MiscDetails from './misc_details';
 
 class ProductDetails extends Component {
     state = {
@@ -46,17 +48,42 @@ class ProductDetails extends Component {
             return <h1 className="center">Product Not Found</h1>
         }
 
-        const {description = 'No description available', images, name} = details;
+        const {description = 'No description available', images, miscDetails, name, price} = details;
 
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
-                <ProductCarousel images={images}/>
-                <p>{description}</p>
+                <div className="row">
+                    <ProductCarousel images={images}/>
+                    <div className="col s12 m8">
+                        <div className="right-align product-price">{formatMoney(price)}</div>
+                        <div className="right-align add-to-cart">
+                            <span className="qty-container">
+                                <button className="btn btn-small btn-floating purple lighten-1">
+                                    <i className="material-icons">remove</i>
+                                </button>
+                                <span className="product-qty">1</span>
+                                <button className="btn btn-small btn-floating purple lighten-1">
+                                    <i className="material-icons">add</i>
+                                </button>
+                            </span>
+
+                            <button className="btn purple darken-2">
+                                <i className="material-icons">add_shopping_cart</i>
+                            </button>
+                        </div>
+                        <p>{description}</p>
+                        <MiscDetails details={miscDetails}/>
+                    </div>
+                </div>
             </div>
         );
-
     }
 }
+
+
+
+
+
 
 export default ProductDetails;
