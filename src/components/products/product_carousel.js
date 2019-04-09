@@ -11,7 +11,7 @@ class ProductCarousel extends Component {
           fullWidth: true
         };
 
-        M.Carousel.init(this.carousel);
+        M.Carousel.init(this.carousel, config);
     }
 
     render(){
@@ -19,7 +19,7 @@ class ProductCarousel extends Component {
 
         const items = this.props.images.map((img) => {
             return(
-                <a key={img} className="carousel-tiem" href="#">
+                <a key={img} className="carousel-item" href="#">
                     <img src={`/dist/${img}`} alt="Product Image"/>
                 </a>
             )
@@ -27,7 +27,7 @@ class ProductCarousel extends Component {
 
 
         return (
-            <div ref={(element) => this.carousel = element} className="col s12 m8 carousel">
+            <div ref={(element) => this.carousel = element} className="col s12 m4 carousel=slider">
                 {items}
             </div>
         );

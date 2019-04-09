@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProductCarousel from './product_carousel';
-import {formatMoney} from '../../helpers';
 import MiscDetails from './misc_details';
+import { formatMoney } from '../../helpers';
+
 
 class ProductDetails extends Component {
     state = {
@@ -10,9 +11,6 @@ class ProductDetails extends Component {
     }
 
     componentDidMount() {
-        // setTimeout(() => {
-        //     this.getDetails()
-        // }, 3000);
         this.getDetails();
     }
 
@@ -20,13 +18,9 @@ class ProductDetails extends Component {
         const { params } = this.props.match;
         // Call server to get product details
 
-        // console.log('Params:', params);
-        // console.log('Fetch product with id of:', params.product_id);
-
         const resp = await axios.get(`/api/getproductdetails.php?productId=${params.product_id}`);
 
         // console.log('Details Resp', resp);
-
         if(resp.data.success) {
             this.setState({
                 details: resp.data.productInfo
@@ -80,10 +74,6 @@ class ProductDetails extends Component {
         );
     }
 }
-
-
-
-
 
 
 export default ProductDetails;

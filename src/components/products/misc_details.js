@@ -19,9 +19,7 @@ export default props => {
 
       return (
           <tr key={key}>
-              <td>{key}</td>
-              {/*<td>{details[key]}</td>*/}
-              <td>{toWords}</td>
+              <td>{toWords(key)}</td>
               <td>{values}</td>
           </tr>
       )
@@ -38,5 +36,5 @@ export default props => {
             {additionalInfo}
           </tbody>
       </table>
-  )
+  );
 }
