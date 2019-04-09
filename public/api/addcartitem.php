@@ -82,11 +82,10 @@ if(empty($_SESSION['cart_id'])){
 	if (mysqli_affected_rows($conn) === 0) {
 		throw new Exception('Cart data was not updated');
 		}
-	}
+
 // test @count and @price
 //	$cart_query = "SELECT @count, @price";
 //	$cart_result = mysqli_query($conn, $cart_query);
-
 
 	$cart_query = "SELECT `item_count`, `total_price` FROM `carts` WHERE `id` = $cart_id";
 	$cart_result = mysqli_query($conn, $cart_query);
@@ -128,18 +127,4 @@ if(empty($_SESSION['cart_id'])){
 	print (json_encode($output));
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
