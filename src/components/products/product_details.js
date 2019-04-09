@@ -7,9 +7,6 @@ class ProductDetails extends Component {
     }
 
     componentDidMount() {
-        // setTimeout(() => {
-        //     this.getDetails()
-        // }, 3000);
         this.getDetails();
     }
 
