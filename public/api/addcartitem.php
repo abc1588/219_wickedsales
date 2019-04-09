@@ -3,14 +3,19 @@ require_once('functions.php');
 set_exception_handler('handleError');
 require_once('config.php');
 require_once('mysqlconnect.php');
+
 if (empty($_GET['product_id'])){
 	throw new Exception('You must select a product');
 }
 
 $product_id = intval($_GET['product_id']);
 $product_quantity = 1;
+$cart_quantity = $product_quantity;
 $user_id = 1;
 
+//===========================================================================
+// get price for the product id - assuming only 1 quantity
+//===========================================================================
 $query = "SELECT `price` FROM `products` WHERE id = $product_id";
 $result = mysqli_query($conn, $query);
 
@@ -21,10 +26,16 @@ if( mysqli_num_rows($result) === 0){
 	throw new Exception("no product matches product id $product_id");
 }
 
+//===========================================================================
+// fetch query result and store in $product_data object
+//===========================================================================
 $product_data = mysqli_fetch_assoc($result);
 $product_price = (int)$product_data['price'];
 $product_total = $product_price * $product_quantity;
 
+//===========================================================================
+// Is there a shopping cart created? If not - create a new shopping cart
+//===========================================================================
 if(empty($_SESSION['cart_id'])){
 	$cart_create_query = "INSERT INTO `carts` SET 
 		`item_count` = $product_quantity,
@@ -33,37 +44,62 @@ if(empty($_SESSION['cart_id'])){
 		`users_id` = $user_id,
 		`changed` = NOW()
 	";
-//	print($cart_create_query);
 	$cart_result = mysqli_query($conn, $cart_create_query);
 	if (!$cart_result){
 		throw new Exception(mysqli_error($conn));
 	}
-
 	if(mysqli_affected_rows($conn) === 0){
 		throw new Exception('data was not added to cart table');
 	}
-
+	//===========================================================================
+	// Cart id is auto-assigned by MySQL - get the new id
+	//===========================================================================
 	$cart_id = mysqli_insert_id($conn);
 	$_SESSION['cart_id']=$cart_id;
 	} else {
-		$cart_id = $_SESSION['cart_id'];
+	$cart_id = $_SESSION['cart_id'];
+//		$update_cart_query = "UPDATE `carts` SET
+//		`item_count` = `item_count` + $product_quantity,
+//		`total_price` = `total_price` + $product_total
+//		WHERE `id` = $cart_id";
+//
+//	$update_result = mysqli_query(#conn, $update_cart_qery);
+//	if(!update_result){
+//		throw new Exception (mysqli_error($conn));
+//	}
+//	if(mysqli_affected_rows($conn) === 0){
+//		throw new Exception('Cart data was not updated');
+//	}
 
-		$update_cart_query = "UPDATE `carts` SET 
-		`item_count` = `item_count` + $product_quantity,
-		`total_price` = `total_price` + $product_total 
-		WHERE `id` = $cart_id";
-
-//		print($update_cart_query);
-
-	$update_result = mysqli_query(#conn, $update_cart_qery);
-
-	if(!update_result){
-		throw new Exception (mysqli_error($conn));
-	}
-	if(mysqli_affected_rows($conn) === 0){
+	$update_cart_query = "UPDATE `carts` SET 
+        `item_count` = (@count := item_count) + $product_quantity, 
+        `total_price` = (@price := total_price) + $product_total 
+        WHERE `id` = $cart_id";
+	$update_result = mysqli_query($conn, $update_cart_query);
+	if (!$update_result) {
+		throw new Exception(mysqli_error($conn));
+		}
+	if (mysqli_affected_rows($conn) === 0) {
 		throw new Exception('Cart data was not updated');
+		}
 	}
-}
+// test @count and @price
+//	$cart_query = "SELECT @count, @price";
+//	$cart_result = mysqli_query($conn, $cart_query);
+
+
+	$cart_query = "SELECT `item_count`, `total_price` FROM `carts` WHERE `id` = $cart_id";
+	$cart_result = mysqli_query($conn, $cart_query);
+	if(!$cart_result){
+		throw new Exception('Unable to get updated cart data');
+	}
+	if(mysqli_num_rows($cart_result) === 0){
+		throw new Exception('No cart data found');
+	}
+	$row = mysqli_fetch_assoc($cart_result);
+	$cart_quantity = $row['item_count'];
+	$product_total = $row['total_price'];
+	}
 
 	$cart_item_query = "INSERT INTO `cart_items` SET 
 		`products_id` = $product_id,
@@ -85,7 +121,7 @@ if(empty($_SESSION['cart_id'])){
 
 	$output = [
 		'success'=>true,
-		'cartCount'=>$product_quantity,
+		'cartCount'=>$cart_quantity,
 		'cartTotal'=>$product_total,
 	];
 
