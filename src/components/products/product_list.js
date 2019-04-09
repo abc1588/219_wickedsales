@@ -5,7 +5,7 @@ import ProductItem from './product_item';
 class ProductList extends Component {
     constructor(props){
         super(props);
-        products: [];
+        this.state = {products: []};
         this.goToDetails = this.goToDetails.bind(this);
     }
 
