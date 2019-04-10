@@ -21,7 +21,7 @@ class ProductDetails extends Component {
 
         const resp = await axios.get(`/api/getproductdetails.php?productId=${params.product_id}`);
 
-        // console.log('Details Resp', resp);
+        console.log('Details Resp', resp);
         if(resp.data.success) {
             this.setState({
                 details: resp.data.productInfo

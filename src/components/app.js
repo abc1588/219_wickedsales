@@ -4,6 +4,7 @@ import '../assets/css/app.scss';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import ProductRoutes from './products';
+import Cart from './cart';
 import Home from './home';
 import Nav from './nav';
 import NotFound from './404';
@@ -16,7 +17,7 @@ const App = () => (
             <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/products" component={ProductRoutes} />
-                    {/*<Route path="/not-found" component={NotFound} />*/}
+                    <Route path="/cart" component={Cart} />*/}
                     <Route component={NotFound} />
             </Switch>
         </div>
