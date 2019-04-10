@@ -36,6 +36,7 @@ class ProductDetails extends Component {
     render(){
         console.log('Product Details:', this.state.details);
         const {details} = this.state;
+        const { params } = this.props.match;
 
         if(details === null){
             return <h1 className="center">Loading...</h1>
@@ -52,7 +53,7 @@ class ProductDetails extends Component {
                     <ProductCarousel images={images}/>
                     <div className="col s12 m8">
                         <div className="right-align product-price">{formatMoney(price)}</div>
-                        <ProductAdd/>
+                        <ProductAdd productId={params.product_id}/>
                         <p>{description}</p>
                         <MiscDetails details={miscDetails}/>
                     </div>
@@ -64,3 +65,4 @@ class ProductDetails extends Component {
 
 
 export default ProductDetails;
+

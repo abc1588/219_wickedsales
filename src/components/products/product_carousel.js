@@ -15,7 +15,7 @@ class ProductCarousel extends Component {
     }
 
     render(){
-        console.log('Props:', this.props);
+        //console.log('Props:', this.props);
 
         const items = this.props.images.map((img) => {
             return(
@@ -27,7 +27,7 @@ class ProductCarousel extends Component {
 
 
         return (
-            <div ref={(element) => this.carousel = element} className="col s12 m4 carousel=slider">
+            <div ref={(element) => this.carousel = element} className="col s12 m4 carousel carousel-slider">
                 {items}
             </div>
         );
