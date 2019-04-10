@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ProductItem from './product_item';
 
+
 class ProductList extends Component {
     constructor(props){
         super(props);
-        this.state = {products: []};
+        this.state= {
+            products: []
+        };
         this.goToDetails = this.goToDetails.bind(this);
     }
 
@@ -29,8 +32,11 @@ class ProductList extends Component {
     }
 
     render(){
+        if(!this.state.products){
+            return <h1>Loading...</h1>;
+        }
         const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>;
+            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails} />;
         });
 
         return (
