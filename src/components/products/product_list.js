@@ -31,6 +31,22 @@ class ProductList extends Component {
         });
     }
 
+    // render(){
+    //     console.log('state', this.state)
+    //     const productList = this.state.products.map((product) => {
+    //         return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails} />;
+    //     });
+    //
+    //     return (
+    //         <div className="product-list">
+    //             <h1 className="center">Wicked Product List</h1>
+    //             <ul className="collection">
+    //                 {productList}
+    //             </ul>
+    //         </div>
+    //     );
+    // }
+
     render(){
         if(!this.state.products){
             return <h1>Loading...</h1>;

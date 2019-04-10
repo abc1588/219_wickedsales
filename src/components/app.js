@@ -7,6 +7,7 @@ import ProductRoutes from './products';
 import Home from './home';
 import Nav from './nav';
 import NotFound from './404';
+import Test from './test';
 
 const App = () => (
     <div>
@@ -18,7 +19,6 @@ const App = () => (
                     {/*<Route path="/not-found" component={NotFound} />*/}
                     <Route component={NotFound} />
             </Switch>
-
         </div>
     </div>
 );
