@@ -1,12 +1,10 @@
 <?php
 
 require_once('functions.php');
-
 set_exception_handler('handleError');
-
 require_once('config.php');
-
 require_once('mysqlconnect.php');
+
 
 $query = "SELECT p.`id`, p.`name`, p.`price`,
 		i.`url` AS `images`
@@ -16,9 +14,8 @@ $query = "SELECT p.`id`, p.`name`, p.`price`,
 	ORDER BY p.`id`
 ";
 
-/*procedural*/
-$result = mysqli_query($conn, $query);
 
+$result = mysqli_query($conn, $query);
 if(!$result){
 	throw new Exception('invalid query: '. mysqli_error($conn));
 }

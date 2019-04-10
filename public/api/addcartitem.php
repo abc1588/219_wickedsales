@@ -13,6 +13,8 @@ $product_quantity = 1;
 $cart_quantity = $product_quantity;
 $user_id = 1;
 
+//$cart_id = intval($_GET['cart_id']);
+
 //===========================================================================
 // get price for the product id - assuming only 1 quantity
 //===========================================================================
@@ -33,10 +35,16 @@ $product_data = mysqli_fetch_assoc($result);
 $product_price = (int)$product_data['price'];
 $product_total = $product_price * $product_quantity;
 
+$cart_id = intval($_GET['cart_id']);
+print ($cart_id);
+print ($product_id);
+print ($product_data);
+
 //===========================================================================
 // Is there a shopping cart created? If not - create a new shopping cart
 //===========================================================================
-if(empty($_SESSION['cart_id'])){
+//if(empty($_SESSION['cart_id'])){
+if(empty($_GET['cart_id'])){
 	$cart_create_query = "INSERT INTO `carts` SET 
 		`item_count` = $product_quantity,
 		`total_price` = $product_total,
