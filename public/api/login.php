@@ -9,8 +9,16 @@ $output = [
     'success' => false
 ];
 
-$json_input = file_get_contents("php://input");
+//if(empty($_POST['email'])){
+//    throw new Exception('email is a required value');
+//}
+//if(empty($_POST['password'])){
+//    throw new Exception('password is a required value');
+//}
+//$email = $_POST['email'];
+//$password = $_POST['password'];
 
+$json_input = file_get_contents("php://input");
 $input = json_decode($json_input, true);  //true-convert all objects to associative arrays, as opposed to standard class object
 
 if(empty($input['email'])){
@@ -22,14 +30,7 @@ if(empty($input['password'])){
 $email = $input['email'];
 $password = $input['password'];
 
-//if(empty($_POST['email'])){
-//    throw new Exception('email is a required value');
-//}
-//if(empty($_POST['password'])){
-//    throw new Exception('password is a required value');
-//}
-//$email = $_POST['email'];
-//$password = $_POST['password'];
+$email = addslashes($email);   //data sanitization for email
 
 $hashedPassword = sha1($password);
 
