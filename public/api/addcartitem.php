@@ -45,7 +45,7 @@ if(empty($_SESSION['cart_id'])){
 
 	$cart_id = mysqli_insert_id($conn);
 	$_SESSION['cart_id']=$cart_id;
-	} else {
+} else {
 		$cart_id = $_SESSION['cart_id'];
 
 		$update_cart_query = "UPDATE `carts` SET 
@@ -55,9 +55,9 @@ if(empty($_SESSION['cart_id'])){
 
 //		print($update_cart_query);
 
-	$update_result = mysqli_query(#conn, $update_cart_qery);
+	$update_result = mysqli_query($conn, $update_cart_query);
 
-	if(!update_result){
+	if(!$update_result){
 		throw new Exception (mysqli_error($conn));
 	}
 	if(mysqli_affected_rows($conn) === 0){
