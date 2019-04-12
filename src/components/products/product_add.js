@@ -35,6 +35,7 @@ class ProductAdd extends Component {
 
             const { cartCount, cartTotal } = resp.data;
             // this.props.history.push('/cart');
+            console.log(resp.data.cartCount);
             updateCart(resp.data.cartCount);
 
             this.setState({

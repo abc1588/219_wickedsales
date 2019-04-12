@@ -4,6 +4,7 @@ import '../assets/css/app.scss';
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import AccountRoutes from './account';
 import Cart from './cart';
 import Home from './home';
 import Nav from './nav';
@@ -50,6 +51,7 @@ class App extends Component {
                             return <ProductRoutes {...routingProps} updateCart={this.updateCartItems}/>
                         }} />
                         <Route path="/cart" component={Cart} />
+                        <Route path="/account" component={AccountRoutes} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

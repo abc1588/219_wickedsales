@@ -92,7 +92,7 @@ if(empty($_SESSION['cart_id'])){
 
 	$output = [
 		'success'=>true,
-		'cartCount'=>$product_quantity,
+		'cartCount'=>$cart_quantity,
 		'cartTotal'=>$product_total,
 	];
 
