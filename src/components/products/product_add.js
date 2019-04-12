@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter} from 'react-router-dom';  //higher order component - reusable component used to add functions to component
 import axios from 'axios';
 import Modal from '../modal';
+import { formatMoney } from '../../helpers';
 
 class ProductAdd extends Component {
 
@@ -18,6 +19,8 @@ class ProductAdd extends Component {
         this.incrementQty = this.incrementQty.bind(this);
         this.decrementQty = this.decrementQty.bind(this);
         this.addToCart = this.addToCart.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.goToCart = this.goToCart.bind(this);
     }
 
     addToCart(){
@@ -39,14 +42,6 @@ class ProductAdd extends Component {
                 cartQty: cartCount,
                 totalPrice: cartTotal
             })
-
-
-        });
-    }
-
-    incrementQty(){
-        this.setState({
-            qty: this.state.qty + 1
         });
     }
 
@@ -56,9 +51,28 @@ class ProductAdd extends Component {
         });
     }
 
+    incrementQty(){
+        this.setState({
+            qty: this.state.qty + 1
+        });
+    }
+
+    closeModal(){
+        this.setState({
+           modalOpen: false,
+           qty: 1
+        });
+    }
+
+    goToCart(){
+        this.props.history.push('/cart');
+    }
+
+
+
 
     render(){
-        console.log('Products Add Props:', this.props);
+        // console.log('Products Add Props:', this.props);
 
         const { modalOpen, totalPrice, cartQty, qty} = this.state;
 
@@ -76,16 +90,22 @@ class ProductAdd extends Component {
                 <button onClick={this.addToCart} className="btn purple darken-2">
                     <i className="material-icons">add_shopping_cart</i>
                 </button>
-                <Modal isOpen={modalOpen}>
-                    <h1 className="center">{qty} Item(s) Added to Cart</h1>
+                <Modal
+                    defaultAction={this.closeModal}
+                    defaultActionText="Continue Shopping"
+                    isOpen={modalOpen}
+                    secondaryAction={this.goToCart}
+                    secondaryActionText="View Cart"
+                >
+                    <h1 className="center">{qty} Item{qty > 1 && 's'} Added to Cart</h1>
 
                     <div className="row">
-                        <div className="col s6">Cart Total</div>
-                        <div className="col s6">{cartQty}</div>
+                        <div className="col s6">Cart Total Items:</div>
+                        <div className="col s6 left-align">{cartQty}</div>
                     </div>
                     <div className="row">
-                        <div className="col s6">Cart Total Price</div>
-                        <div className="col s6">{totalPrice}</div>
+                        <div className="col s6">Cart Total Price:</div>
+                        <div className="col s6 left-align">{formatMoney(totalPrice)}</div>
                     </div>
 
                 </Modal>
