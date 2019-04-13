@@ -34,13 +34,29 @@ $email = addslashes($email);   //data sanitization for email
 
 $hashedPassword = sha1($password);
 
-unset($_POST['password']);
+unset($input['password']);
+
+//======================================================== Replace with Sanitized Query below ==========================
+//$query = "SELECT `id`, `name` FROM `users`
+//    WHERE `email` = '$email' and `password` = '$hashedPassword'
+//";
+//$result = mysqli_query($conn, $query);  //$result is the reference to the mysqli result object, return false if query did not succeed
+//======================================================== Replace with Sanitized Query below ==========================
 
 $query = "SELECT `id`, `name` FROM `users`
-    WHERE `email` = '$email' and `password` = '$hashedPassword'
+    WHERE `email` = ? and `password` = ?
 ";
+//1) send the safe query to the DB
+$statement = mysqli_prepare($conn, $query);
+//2) send the dangerous data to the DB
+mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword);
+//3) tell the DB to mix the query and the data
+$result = mysqli_stmt_execute($statement);
+//4) get the result pointer for the prepared query statement's returned data
+$result = mysqli_stmt_get_result($statement);
+//5) now you can use $result var as normal
 
-$result = mysqli_query($conn, $query);  //$result is the reference to the mysqli result object, return false if query did not succeed
+
 
 if (!$result){
     throw new Exception(mysqli_error($conn));
