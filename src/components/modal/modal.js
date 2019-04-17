@@ -23,7 +23,7 @@ class Modal extends Component {
                             <button className="btn btn-large purple darken-2" onClick={close}>{defaultActionText}</button>
                             {
                                 secondaryAction
-                                    ? <button onclick={secondaryAction} className="btn btn-large purple lighten-1 lime">{secondaryActionText}</button>
+                                    ? <button onClick={secondaryAction} className="btn btn-large purple lighten-1 lime">{secondaryActionText}</button>
                                     : null
                             }
                         </div>
