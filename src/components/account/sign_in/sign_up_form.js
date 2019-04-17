@@ -2,21 +2,27 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import Input from '../../general/input';
 
-const SignInForm = props => {
+const SignUpForm = props => {
     console.log('Sign In Form Props:', props);
-    const { handleSubmit, signIn } = props;
+    const { handleSubmit, signUp } = props;
 
     return (
-        <form onSubmit={handleSubmit(signIn)}>
+        <form onSubmit={handleSubmit(signUp)}>
+            <div className="row">
+                <Field id="name" name="name" component={Input} label="Name"/>
+            </div>
             <div className="row">
                 <Field id="email" name="email" component={Input} label="Email"/>
             </div>
             <div className="row">
                 <Field id="password" name="password" component={Input} type="password" label="Password"/>
             </div>
-                <div className="row">
+            <div className="row">
+                <Field id="password2" name="password2" component={Input} type="password" label="Re-enter Password"/>
+            </div>
+            <div className="row">
                 <div className="col s12 right-align">
-                    <button className="btn purple darken-2">Sign In</button>
+                    <button className="btn purple darken-2">Sign Up</button>
                 </div>
             </div>
         </form>
@@ -36,7 +42,9 @@ function validate(values){
     return errors;
 }
 
+// new user has signed up,
+
 export default reduxForm({
-    form: 'sign-in-form',
+    form: 'sign-up-form',
     validate: validate
-})(SignInForm);
+})(SignUpForm);
