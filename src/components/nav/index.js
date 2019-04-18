@@ -1,12 +1,62 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Sidenav from './sidenav';
 import CartLink from './cart_link';
 import './nav.scss';
 
 class Nav extends Component {
 
+    state = {
+        authLinks: [
+            {
+                to: '/account/orders',
+                text: 'My Orders'
+            },
+            {
+                to: '/account/profile',
+                text: 'My Profile'
+            },
+            {
+                to: '/account/sign-out',
+                text: 'Sign Out'
+            }
+        ],
+        guestLinks: [
+            {
+                to: '/account/sign-in',
+                text: 'Sign-In'
+            },
+            {
+                to: '/account/sign-up',
+                text: 'Sign Up'
+            }
+        ]
+    }
+
+
+    buildLink(link){
+        return (
+            <li key={link.to}>
+                <Link to={link.to}>{link.text}</Link>
+            </li>
+        )
+    }
+
+
     renderLinks(){
+
+        const { userAuth } = this.props;
+        const { authLinks, guestLinks } = this.state;
+        let navLinks = null;
+
+        if (userAuth){
+            navLinks = authLinks.map(this.buildLink);
+        } else {
+            navLinks = guestLinks.map(this.buildLink);
+        }
+
+
         return (
             <Fragment>
                 <li>
@@ -15,6 +65,7 @@ class Nav extends Component {
                 <li>
                     <Link to="/products">Products</Link>
                 </li>
+                {navLinks}
                 <li>
                     <CartLink items={this.props.cartItems}/>
                 </li>
@@ -24,6 +75,8 @@ class Nav extends Component {
 
     render(){
         const links = this.renderLinks();
+
+        console.log('Props:', this.props);
 
         return (
             <Fragment>
@@ -47,4 +100,10 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+function mapStateToProps(state){
+    return {
+        userAuth: state.user.auth
+    }
+}
+
+export default connect(mapStateToProps) (Nav);
