@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import ProductItem from './product_item';
+import
 
 
 class ProductList extends Component {
@@ -32,6 +34,8 @@ class ProductList extends Component {
     }
 
     render(){
+        console.log('Product List Props', this.props);
+
         if(!this.state.products){
             return <h1>Loading...</h1>;
         }
@@ -50,5 +54,13 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+function mapStateToProps(state){
+    return {
+        products: state.products.list
+    }
+}
+
+export default connect()
+
+export default connect()(ProductList);
 
