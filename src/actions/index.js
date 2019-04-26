@@ -4,8 +4,8 @@ import axios from 'axios';
 //action creator function - MUST RETURN an action, action is an object and must have a type property
 
 export const checkAuth = () => async dispatch => {
-    const resp = await axios.get('/api/check-auth.php');
-    if (resp.data.success) {
+    const { data: {success, email}} = await axios.get('/api/check-auth.php');
+    if (success) {
         dispatch({
             type: types.SIGN_IN,
             email: resp.data.email
@@ -55,8 +55,8 @@ export function getAllProducts() {
         axios.get('/api/getproducts.php').then((resp) => {
 
             dispatch({
-                type:
-                products:
+                type: types.GET_ALL_PRODUCTS,
+                products: resp.data.products
             });
         });
     }
