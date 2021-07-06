@@ -106,4 +106,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps) (Nav);
+export default connect(mapStateToProps)(Nav);
